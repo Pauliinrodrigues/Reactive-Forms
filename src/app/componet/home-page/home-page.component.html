@@ -1,0 +1,14 @@
+<h2>Formulário Reactivo</h2>
+
+<label>
+    Nome:
+    <input id="name" type="text" [formControl]="name">
+    <hr>
+    E-mail:
+    <input id="email" type="email" [formControl]="email" requerid>
+    <hr>
+    Senha:
+    <input id="password" type="password" [formControl]="password">
+    <hr>
+    <button type="button" (click)="updateEnviar">Enviar Dados</button>
+</label>
