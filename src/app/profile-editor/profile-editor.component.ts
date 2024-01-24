@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-editor',
@@ -12,20 +12,20 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 export class ProfileEditorComponent {
   #fb = inject(FormBuilder)
   profileForm = this.#fb.group({
-  firstName: ['',Validators.required],
-  lastName: [''],
-  address: this.#fb.group({
-  street: [''],
-  city: [''],
-  state: [''],
-  zip:[''],
-}),
-});
-updateProfile() {
-  this.profileForm.patchValue({
-    firstName: 'Nancy',
+    firstName: ['', Validators.required],
+    lastName: [''],
+    address: this.#fb.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: [''],
+    }),
   });
-}
+  updateProfile() {
+    this.profileForm.patchValue({
+      firstName: '',
+    });
+  }
 
 }
 
