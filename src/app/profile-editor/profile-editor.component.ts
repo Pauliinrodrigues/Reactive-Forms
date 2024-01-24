@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-editor',
@@ -7,13 +7,30 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   imports: [ReactiveFormsModule],
   templateUrl: './profile-editor.component.html',
   styleUrl: './profile-editor.component.scss'
+
 })
 export class ProfileEditorComponent {
-  profileForm = new FormGroup({})
-  firstName = new FormGroup('');
-  lastName = new FormGroup('');
-  /*ProfileEditor permite gerenciar as instâncias de controle de formulário
-   para os controles firstNamee lastName dentro da instância do grupo de formulários.*/
-
+  #fb = inject(FormBuilder)
+  profileForm = this.#fb.group({
+  firstName: ['',Validators.required],
+  lastName: [''],
+  address: this.#fb.group({
+  street: [''],
+  city: [''],
+  state: [''],
+  zip:[''],
+}),
+});
+updateProfile() {
+  this.profileForm.patchValue({
+    firstName: 'Nancy',
+  });
+}
 
 }
+
+
+
+
+/*ProfileEditor permite gerenciar as instâncias de controle de formulário
+   para os controles firstNamee lastName dentro da instância do grupo de formulários.*/
